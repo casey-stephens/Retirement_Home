@@ -1,10 +1,10 @@
-import RoomNode
+from RoomNode import *
 
 class FloorNode():
-    def __init__(self):
-        self.up = None                          #up and down are each a floor node. if ground level, down will be null. vice versa for top level
-        self.down = None
-        self.room_header = None                 #each floor will have a room header to start the room linked list, think of it as the elevator exit, next room is the first on the floor
+    def __init__(self, up =None, down = None, room_header = None, floor_number = None, is_head = False):
+        self.up = FloorNode                          #up and down are each a floor node. if ground level, down will be null. vice versa for top level
+        self.down = FloorNode
+        self.room_header = RoomNode                 #each floor will have a room header to start the room linked list, think of it as the elevator exit, next room is the first on the floor
         self.floor_number = None
         self.is_head = False                  #used to indicate if the floor node is the header node, aka: ground floor
 
@@ -43,11 +43,8 @@ class FloorNode():
         return self.room_header
 
     def setRoomHeader(self,new_room_node):
-        if isinstance(new_room_node, RoomNode.RoomNode):
+        if isinstance(new_room_node, RoomNode):
             self.room_header = new_room_node
         else:
             print("Room header must be a floor node")
-
-    def getIsHead(self):
-        return self.is_head
 
